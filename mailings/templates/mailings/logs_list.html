@@ -1,0 +1,33 @@
+{% extends 'mailings/base.html' %}
+<title>Магазин</title>
+{% block content %}
+<h1 class="text-center">Попытки рассылки</h1>
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            {% for object in object_list %}
+            <div class="col-md-5">
+                <div class="card mb-5 box-shadow">
+                    <div class="card-body">
+                        <h4 class="my-0 fw-normal">{{ object.date_time_mailing }}</h4>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Статус: {{ object.status_mailing }}</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Ответ сервера: {{ object.response }}</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Рассылка: {{ object.mailing_parameters }}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

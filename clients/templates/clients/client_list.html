@@ -1,0 +1,48 @@
+{% extends 'mailings/base.html' %}
+<title>Магазин</title>
+{% block content %}
+<h1 class="text-center">Сообщения</h1>
+<div class="col-12  mb-5">
+    {% if user.is_authenticated %}
+    <a class="btn btn-outline-primary" href="{% url 'clients:create' %}">Создать клиента</a>
+    {% endif %}
+</div>
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            {% for object in object_list %}
+            <div class="col-md-5">
+                <div class="card mb-5 box-shadow">
+                    <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>email: {{ object.email }}</li>
+                            <li>Фамилия: {{ object.last_name }}</li>
+                            <li>Имя: {{ object.first_name }}</li>
+                            <li>Отчество: {{ object.patronymic }}</li>
+                            <li>Комментарий: {{ object.comment }}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                 <a class="btn btn-sm btn-outline-secondary"
+                                   href="{% url 'clients:detail' object.pk %}">
+                                    Просмотр
+                                </a>
+                                <a class="btn btn-sm btn-outline-secondary"
+                                   href="{% url 'clients:update' object.pk %}">
+                                    Редактировать
+                                </a>
+                                <a class="btn btn-sm btn-outline-secondary"
+                                   href="{% url 'clients:delete' object.pk %}">
+                                    Удалить
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

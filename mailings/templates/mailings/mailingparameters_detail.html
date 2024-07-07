@@ -1,0 +1,30 @@
+{% extends 'mailings/base.html' %}
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <h4 class="my-0 fw-normal">{{ object.title }}</h4>
+                    <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Начало: {{ object.start_date }}</li>
+                            <li>Окончание: {{ object.end_date }}</li>
+                            <li>Интервал: {{ object.interval }}</li>
+                            <li>Следующая расылка: {{ object.next_date }}</li>
+                            <li>Текст письма: {{ object.message.title }}</li>
+                            <li>Содержимое письма: {{ object.message.content }}</li>
+                            <li>Клиенты: {% for client in object.client.all %} {{client.email}} {% endfor %}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailings:list' %}">Назад</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

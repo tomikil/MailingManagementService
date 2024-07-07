@@ -1,0 +1,27 @@
+{% extends 'mailings/base.html' %}
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>email: {{ object.email }}</li>
+                            <li>Фамилия: {{ object.last_name }}</li>
+                            <li>Имя: {{ object.first_name }}</li>
+                            <li>Отчество: {{ object.patronymic }}</li>
+                            <li>Комментарий: {{ object.comment }}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary" href="{% url 'clients:list' %}">Назад</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

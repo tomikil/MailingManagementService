@@ -1,0 +1,41 @@
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Меню</h4>
+                    <ul class="list-unstyled">
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'mailings:list' %}" class="text-white">Рассылки</a></li>
+                        <li><a href="{% url 'mailings:message_list' %}" class="text-white">Сообщения</a></li>
+                        <li><a href="{% url 'clients:list' %}" class="text-white">Клиенты</a></li>
+                        <li><a href="{% url 'mailings:logs_list' %}" class="text-white">Логи</a></li>
+                        <form id='UserForm' action="{% url 'users:logout' %}" method="post">
+                            {% csrf_token %}
+                            <li><a href="javascript:void(0);" onclick="document.getElementById('UserForm').submit();"
+                                   class="text-white">Выйти</a></li>
+                        </form>
+                        {% else %}
+                        <li><a href="{% url 'users:login' %}" class="text-white">Войти</a></li>
+                        <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
