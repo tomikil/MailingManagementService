@@ -22,7 +22,6 @@ class MailingParametersListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-
 class MailingParametersDetailsView(LoginRequiredMixin, DetailView):
     model = MailingParameters
 
@@ -50,10 +49,9 @@ class MailingParametersCreateView(LoginRequiredMixin, CreateView):
 class MailingParametersUpdateView(LoginRequiredMixin, UpdateView):
     model = MailingParameters
     form_class = MailingParametersForm
-    success_url = reverse_lazy('mailings:list')
 
     def get_success_url(self):
-        return reverse('mailings:update', args=(self.kwargs.get('pk')))
+        return reverse('mailings:detail', args=[self.kwargs.get('pk')])
 
     def get_form_class(self):
         user = self.request.user

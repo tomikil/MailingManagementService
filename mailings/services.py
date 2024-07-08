@@ -61,7 +61,7 @@ def send_mailing():
             elif mailing.interval == 'per_month':
                 nex_date = mailing.next_date + timezone.timedelta(days=30)
 
-            if nex_date > mailing.end_date:
+            if nex_date and current_time >= mailing.end_date:
                 if status:
                     mailing.status = 'finished'
                 else:

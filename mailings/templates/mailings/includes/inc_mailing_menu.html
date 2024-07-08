@@ -10,7 +10,7 @@
                     <ul class="list-unstyled">
                         <li><a href="{% url 'mailings:index' %}" class="text-white">Главная</a></li>
                         <li><a href="{% url 'blogs:list' %}" class="text-white">Блог</a></li>
-                        {% if user.is_authenticated and not perms.blogs.add_blog %}
+                        {% if user.is_authenticated and not perms.blogs.add_blog or user.is_superuser %}
                         {% if user.is_staff %}
                         <li><a href="{% url 'mailings:list' %}" class="text-white">Рассылки</a></li>
                         <li><a href="{% url 'mailings:message_list' %}" class="text-white">Сообщения</a></li>
