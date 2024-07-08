@@ -8,16 +8,28 @@
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4 class="text-white">Меню</h4>
                     <ul class="list-unstyled">
-                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'mailings:index' %}" class="text-white">Главная</a></li>
+                        <li><a href="{% url 'blogs:list' %}" class="text-white">Блог</a></li>
+                        {% if user.is_authenticated and not perms.blogs.add_blog %}
+                        {% if user.is_staff %}
                         <li><a href="{% url 'mailings:list' %}" class="text-white">Рассылки</a></li>
                         <li><a href="{% url 'mailings:message_list' %}" class="text-white">Сообщения</a></li>
                         <li><a href="{% url 'clients:list' %}" class="text-white">Клиенты</a></li>
                         <li><a href="{% url 'mailings:logs_list' %}" class="text-white">Логи</a></li>
+                        {% endif %}
+
+                        {% if perms.users.view_all_users or user.is_superuser %}
+                        <li><a href="{% url 'users:list' %}" class="text-white">Список пользователей</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>
                         <form id='UserForm' action="{% url 'users:logout' %}" method="post">
                             {% csrf_token %}
                             <li><a href="javascript:void(0);" onclick="document.getElementById('UserForm').submit();"
                                    class="text-white">Выйти</a></li>
                         </form>
+                        <div class="text-success">
+                            {{ user.get_username }}
+                        </div>
                         {% else %}
                         <li><a href="{% url 'users:login' %}" class="text-white">Войти</a></li>
                         <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
