@@ -21,9 +21,7 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
         fields = ("email", "password1", "password2")
 
 
-class UserForm(StyleFormMixin, UserChangeForm):
-    """Форма изменения пользователя"""
-
+class UserProfileForm(StyleFormMixin, UserChangeForm):
     class Meta:
         model = User
         fields = ('email', 'phone', 'avatar')
@@ -35,8 +33,6 @@ class UserForm(StyleFormMixin, UserChangeForm):
 
 
 class ManagerUserForm(UserChangeForm):
-    """Форма изменения пользователя менеджером"""
-
     class Meta:
         model = User
         fields = ('is_active',)
@@ -45,3 +41,9 @@ class ManagerUserForm(UserChangeForm):
         super().__init__(*args, **kwargs)
 
         self.fields['password'].widget = forms.HiddenInput()
+
+
+class PasswordRecoveryForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)
