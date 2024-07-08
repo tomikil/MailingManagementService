@@ -85,7 +85,8 @@ class MailingParameters(models.Model):
         verbose_name = 'параметры рассылки'
         verbose_name_plural = 'параметры рассылок'
         permissions = [
-            ('change_status', 'Can change status'),
+            ('deactivate_mailing', 'Can deactivate mailing'),
+            ('view_all_mailings', 'Can view all mailings'),
         ]
 
 
